@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IM2 To-do List</title>
+</head>
+<body>
+    <h3>Things to do: </h3>
+    <ul>
+        {% for todo in todolist %}
+            <li>{{ todo['todo'] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
