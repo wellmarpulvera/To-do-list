@@ -15,7 +15,7 @@ def add():
     todolist.append({"task": todo, "done": False})
     return redirect(url_for('index'))
 
-@app.route("/edit", methods=["GET", "POST"])
+@app.route("/edit/<int:index>:", methods=["GET", "POST"])
 def edit(index):
     todo = todolist[index]
     if request.method == "POST":
@@ -26,7 +26,7 @@ def edit(index):
 
 @app.route("/delete/<int:index>")
 def delete(index):
-    del todo
+    del todolist[index]
     return redirect(url_for('index'))
 
 @app.route("/check/<int:index>")
