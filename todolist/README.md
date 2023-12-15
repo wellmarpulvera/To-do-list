@@ -3,7 +3,7 @@
 Members:
 - Alcordo, Roxanne - [roxsand](https://github.com/roxsand)
 - Guinita, Daniel - [daniel-guinita](https://github.com/daniel-guinita)
-- Pulvera, Wellmar - [wellmarpulvera](https://github.com/wellmarpulvera)
+- Sepulvera, Wellmar - [wellmarpulvera](https://github.com/wellmarpulvera)
 
 ## Setup
 1. Create a virtual environment:
@@ -17,17 +17,13 @@ for windows powershell:
 .venv\Scripts\activate
 ```
 
-3. Install Flask, mysqldb, dotenv:
+3. Install Flask and mysqldb:
 ```sh
 pip install Flask
 ```
 Install mysqldb
 ```sh
 pip install flask-mysqldb
-```
-Install dotenv
-```sh
-pip install python-dotenv
 ```
 
 <!-- 4. Create a `.env` file and with the following template:
@@ -46,4 +42,5 @@ PORT = 5000
 ### Running the Flask app
 ```sh
 flask --app app.py run --debug
+# python app.py
 ```
