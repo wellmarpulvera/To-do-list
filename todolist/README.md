@@ -3,7 +3,7 @@
 Members:
 - Alcordo, Roxanne - [roxsand](https://github.com/roxsand)
 - Guinita, Daniel - [daniel-guinita](https://github.com/daniel-guinita)
-- Sepulvera, Wellmar - [wellmarpulvera](https://github.com/wellmarpulvera)
+- Pulvera, Wellmar - [wellmarpulvera](https://github.com/wellmarpulvera)
 
 ## Setup
 1. Create a virtual environment:
