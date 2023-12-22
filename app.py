@@ -29,3 +29,30 @@ def index():
     categories = cur.fetchall()
     cur.close()
     return render_template("index.html", todolist=todolist, categories=categories)
+
+@app.route("/add", methods=["POST"])
+def add():
+    todo = request.form['todo']
+    category_id = request.form['category']
+    cur = mysql.connection.cursor()
+    cur.callproc("add_task", (todo, category_id))
+    cur.close()
+    return redirect(url_for('index'))
+
+@app.route("/category/add", methods=["POST"])
+def add_category():
+    category = request.form['category']
+    cur = mysql.connection.cursor()
+    cur.callproc("add_category", (category, ))
+    cur.close()
+    return redirect(url_for('index'))
+
+@app.route("/edit/<int:index>", methods=["GET", "POST"])
+def edit(index):
+    if request.method == "POST":
+        task = request.form['todo']
+        cur = mysql.connection.cursor()
+        cur.callproc("edit_task", (index, task))
+        cur.close()
+        return redirect(url_for('index'))
+    
