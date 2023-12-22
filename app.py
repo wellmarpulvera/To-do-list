@@ -56,3 +56,26 @@ def edit(index):
         cur.close()
         return redirect(url_for('index'))
     
+
+      else:
+        cur = mysql.connection.cursor()
+        cur.callproc("get_task", (index, ))
+        todo = cur.fetchone()
+        cur.close()
+        return render_template("edit.html", todo=todo, index=index)
+
+@app.route("/delete/<int:index>")
+def delete(index):
+    cur = mysql.connection.cursor()
+    cur.callproc("delete_task", (index, ))
+    cur.close()
+    return redirect(url_for('index'))
+
+@app.route("/check/<int:index>")
+def check(index):
+    cur = mysql.connection.cursor()
+    cur.callproc("change_task_status", (index, ))
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
