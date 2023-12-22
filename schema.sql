@@ -41,5 +41,48 @@ BEGIN
     WHERE id = task_id;
 END //
 
+CREATE PROCEDURE get_task(
+    IN task_id INT
+)
+BEGIN
+    SELECT *
+    FROM task_view
+    WHERE id = task_id;
+END //
+
+
+CREATE PROCEDURE delete_task(
+    IN task_id INT
+)
+BEGIN
+    DELETE FROM tasks
+    WHERE id = task_id;
+END //
+
+
+CREATE PROCEDURE change_task_status(
+    IN task_id INT
+)
+BEGIN
+    DECLARE current_done INT;
+    
+    SELECT done INTO current_done FROM tasks WHERE id = task_id;
+
+    IF current_done = 0 THEN
+        UPDATE tasks SET done = 1 WHERE id = task_id;
+    ELSE
+        UPDATE tasks SET done = 0 WHERE id = task_id;
+    END IF;
+END //
+
+-- TRIGGERS
+CREATE TRIGGER change_upper
+BEFORE INSERT ON tasks
+FOR EACH ROW
+BEGIN
+    SET NEW.title = upper(NEW.title);
+END //
+
+DELIMITER ;
 
 
