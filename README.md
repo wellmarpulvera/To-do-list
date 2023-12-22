@@ -42,5 +42,4 @@ PORT = 5000
 ### Running the Flask app
 ```sh
 flask --app app.py run --debug
-# python app.py
 ```
