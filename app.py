@@ -18,3 +18,14 @@ app.config["MYSQL_AUTOCOMMIT"] = True
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 mysql = MySQL(app)
+
+@app.route('/')
+def index():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM task_view")
+    todolist = cur.fetchall()
+    cur.nextset()
+    cur.execute("SELECT * FROM categories")
+    categories = cur.fetchall()
+    cur.close()
+    return render_template("index.html", todolist=todolist, categories=categories)
