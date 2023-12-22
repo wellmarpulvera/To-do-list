@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IM2 To-do List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li span {
+            flex-grow: 1;
+            margin-right: 10px;
+            word-wrap: break-word;
+        }
+
+        li a {
+            text-decoration: none;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        li a.check {
+            background-color: #5cb85c; /* Green */
+        }
+
+        li a.edit {
+            background-color: #f0ad4e; /* Orange */
+        }
+
+        li a.delete {
+            background-color: #d9534f; /* Red */
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #5bc0de; /* Blue */
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #category{
+          flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <h3>Things to do: </h3>
+
+    <div>
+        <ul>
+            {% for todo in todolist %}
+                <li>
+                    <span {% if todo['done'] %}style="text-decoration: line-through"{% endif %}>{{ todo['title'] }}({{ todo["category_name"]}})</span>
+                    <a class="check" href="{{ url_for('check', index = todo['id'])}}">Check</a>
+                    <a class="edit" href="{{ url_for('edit', index = todo['id'])}}">Edit</a>
+                    <a class="delete" href="{{ url_for('delete', index = todo['id'])}}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <form action="{{ url_for('add_category')}}" method="post">
+          <input type="text" name="category" required />
+          <button type="submit">Add a new category</button>
+      </form>
+
+        <form action="{{ url_for('add')}}" method="post">
+            <input type="text" name="todo" required />
+            <select name="category" id="category">
+              {% for category in categories %}
+                <option value="{{ category['id'] }}">{{ category["name"] }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit">Add a new task</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- Imoha ni Ante Danji tanan-->
