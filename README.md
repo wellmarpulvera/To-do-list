@@ -26,18 +26,16 @@ Install mysqldb
 pip install flask-mysqldb
 ```
 
-<!-- 4. Create a `.env` file and with the following template:
+4. Create a `.env` file and with the following template:
 ```sh
 MYSQL_HOST=localhost
 MYSQL_PORT=3306
 MYSQL_USER=root
 MYSQL_PASSWORD=
-MYSQL_DB=questnight
+MYSQL_DB=todolist_im
 MYSQL_CURSORCLASS=DictCursor
 MYSQL_AUTOCOMMIT=true
-
-PORT = 5000
-``` -->
+```
 
 ### Running the Flask app
 ```sh
